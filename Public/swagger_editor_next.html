@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Swagger Editor Next</title>
+    <link rel="stylesheet" href="//unpkg.com/swagger-editor@alpha/dist/swagger-editor.css" />
+</head>
+
+<body>
+    <div id="swagger-editor"></div>
+    <script src="//unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="//unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="//unpkg.com/swagger-editor@alpha/dist/umd/swagger-editor.js"></script>
+    <script>
+        // https://swagger.io/docs/open-source-tools/swagger-editor-next/
+        // https://github.com/swagger-api/swagger-editor
+        const props = {
+        };
+        const element = React.createElement(SwaggerEditor, props);
+        const domContainer = document.querySelector('#swagger-editor');
+        ReactDOM.render(element, domContainer);
+    </script>
+</body>
+
+</html>

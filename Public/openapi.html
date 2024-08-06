@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//unpkg.com/swagger-ui-dist@5/swagger-ui.css">
+  <title>SwaggerUI</title>
+</head>
+
+<body style="margin:0; padding:0;">
+  <section id="swagger-ui" />
+  <script src="//unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+  <script src="//unpkg.com/swagger-ui-dist@5/swagger-ui-standalone-preset.js"></script>
+  <script>
+    window.onload = function () {
+      // https://swagger.io/docs/open-source-tools/swagger-ui/usage/installation/
+      // https://github.com/swagger-api/swagger-ui
+      const defaults = {
+        url: "openapi.yml",
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "StandaloneLayout",
+      }
+      const isStandalone = true
+      if (!isStandalone) {
+        delete defaults.layout
+      }
+      SwaggerUIBundle(defaults)
+    }
+  </script>
+</body>
+
+</html>

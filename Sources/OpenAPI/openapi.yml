@@ -1,0 +1,114 @@
+openapi: "3.1.0"
+info:
+  title: Simple RESTful API Demo
+  version: "0.0.1"
+servers:
+  - url: http://jokerhub.cn:8080/api
+    description: online api service host
+  - url: http://127.0.0.1:8080/api
+    description: local host api development
+paths:
+  /user:
+    post:
+      description: Create User
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /user/{userID}:
+    get:
+      description: Get User
+      operationId: getUser
+      parameters:
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        404:
+          description: User Not Found
+    put:
+      description: Update User
+      operationId: updateUser
+      parameters:
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        404:
+          description: User Not Found
+    delete:
+      description: Delete User
+      operationId: deleteUser
+      parameters:
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+        404:
+          description: User Not Exist
+  /users:
+    get:
+      description: Get All User With Filter
+      operationId: getAllUser
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        uuid:
+          type: string
+        name:
+          type: string
+        age:
+          type: integer
+      examples:
+        - name: tim
+          age: 18

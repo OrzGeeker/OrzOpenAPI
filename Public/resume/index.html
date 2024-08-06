@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>个人简历</title>
+    </head>
+    <body>
+        <div id='viewer'></div>
+        <script src='//unpkg.com/browse/@pdftron/pdfjs-express@8/webviewer.min.js'></script>
+        <script>
+            // pdfjs.express: https://pdfjs.express/profile
+            // Documentation: https://pdfjs.express/documentation
+            WebViewer({
+                path: '/public',
+                licenseKey: 'E3TwY8LVdR4Li0xkqWbl',
+                initialDoc: '/resume/wangzhizhou.pdf',
+                isReadOnly: true,
+                filename: '个人简历',
+            }, document.getElementById('viewer'))
+            .then(instance => {
+                // now you can access APIs through the WebViewer instance
+                const { Core, UI } = instance;
+                
+                // Theme
+                instance.UI.setTheme('dark');
+                
+                // Fit Mode
+                var FitMode = instance.UI.FitMode;
+                instance.UI.setFitMode(FitMode.FitPage);
+                
+                // Layout Mode
+                const LayoutMode = instance.UI.LayoutMode;
+                instance.UI.setLayoutMode(LayoutMode.Continuous);
+                
+                // Page Size
+                const viewer = document.getElementById('viewer');
+                viewer.setAttribute('style', 'height: 100%; width: 100%; margin: 0px;');
+                
+                // Download Button
+                instance.UI.disableElements(['downloadButton'])
+                instance.UI.setHeaderItems((header) => {
+                    header.getHeader('default').push({
+                        img: "icon-header-download",
+                        index: -1,
+                        type: "actionButton",
+                        element: 'downloadButton',
+                        onClick: () => {
+                            instance.UI.downloadPdf()
+                        }
+                    });
+                });
+                
+                // Full Screen Button
+                instance.UI.disableElements(['fullscreenButton'])
+                instance.UI.setHeaderItems((header) => {
+                    header.getHeader('default').push({
+                        img: "icon-header-full-screen",
+                        index: -1,
+                        type: "actionButton",
+                        element: 'fullScreenButton',
+                        onClick: () => {
+                            instance.UI.toggleFullScreen()
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

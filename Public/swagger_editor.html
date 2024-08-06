@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="//unpkg.com/swagger-editor-dist@4/swagger-editor.css">
+  <title>Swagger Editor</title>
+
+<body>
+  <div id="swagger-editor" />
+  <script src="//unpkg.com/swagger-editor-dist@4/swagger-editor-bundle.js"></script>
+  <script src="//unpkg.com/swagger-editor-dist@4/swagger-editor-standalone-preset.js"></script>
+  <script>
+    // https://swagger.io/docs/open-source-tools/swagger-editor/
+    // https://github.com/swagger-api/swagger-editor
+    window.onload = function () {
+      const defaults = {
+        dom_id: "#swagger-editor",
+        layout: 'StandaloneLayout',
+        presets: [
+          SwaggerEditorStandalonePreset
+        ],
+        queryConfigEnabled: false,
+      }
+      SwaggerEditorBundle(defaults)
+    }
+  </script>
+</body>
