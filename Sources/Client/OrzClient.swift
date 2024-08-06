@@ -1,6 +1,6 @@
 import OpenAPIRuntime
 import OpenAPIURLSession
-import OrzOpenAPI
+import OpenAPI
 
 @main
 struct OrzClient {

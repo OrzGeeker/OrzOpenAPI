@@ -1,7 +1,7 @@
 import XCTest
-@testable import OrzOpenAPI
+@testable import OpenAPI
 
-final class OrzOpenAPITests: XCTestCase {
+final class OpenAPITests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

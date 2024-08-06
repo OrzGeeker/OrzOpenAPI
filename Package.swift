@@ -17,7 +17,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .executable(name: "client", targets: ["Client"]),
         .executable(name: "server", targets: ["Server"]),
-        .library(name: "OrzOpenAPI", targets: ["OrzOpenAPI"]),
+        .library(name: "OrzOpenAPI", targets: ["OpenAPI"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.0.0"),
@@ -31,10 +31,10 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .executableTarget(name: "Client", dependencies: ["OrzOpenAPI"]),
-        .executableTarget(name: "Server", dependencies: ["OrzOpenAPI"]),
+        .executableTarget(name: "Client", dependencies: ["OpenAPI"]),
+        .executableTarget(name: "Server", dependencies: ["OpenAPI"]),
         .target(
-            name: "OrzOpenAPI",
+            name: "OpenAPI",
             dependencies: [
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
                 // For Server
@@ -48,7 +48,7 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "OrzOpenAPITests",
-            dependencies: ["OrzOpenAPI"]),
+            name: "OpenAPITests",
+            dependencies: ["OpenAPI"]),
     ]
 )

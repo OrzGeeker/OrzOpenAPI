@@ -2,7 +2,7 @@ import Foundation
 import Vapor
 import OpenAPIRuntime
 import OpenAPIVapor
-import OrzOpenAPI
+import OpenAPI
 
 // Define a type that conforms to the generated protocol.
 struct GreetingServiceAPIImpl: APIProtocol {
