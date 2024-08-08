@@ -39,7 +39,6 @@ extension User: AsyncMigration {
             .id()
             .field("name", .string)
             .field("age", .int)
-            .unique(on: "name")
             .create()
     }
     
