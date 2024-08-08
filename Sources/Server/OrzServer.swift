@@ -1,5 +1,7 @@
 import Foundation
 import Vapor
+import Fluent
+import FluentSQLiteDriver
 import OpenAPIRuntime
 import OpenAPIVapor
 import OpenAPI
@@ -41,6 +43,10 @@ struct OrzServer {
         // Call the generated function on your implementation to add its request
         // handlers to the app.
         try handler.registerHandlers(on: transport, serverURL: Servers.server3())
+        
+        // Add Sqlite Memory Database for Demo Server
+        app.databases.use(.sqlite(.memory), as: .sqlite)
+        try await app.autoMigrate()
         
         // Add Vapor middleware to serve the contents of the Public/ directory.
         app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
