@@ -103,13 +103,13 @@ components:
     User:
       type: object
       properties:
-        id:
+        uuid:
           type: string
         name:
           type: string
         age:
           type: integer
       examples:
-        - id: "1"
-          name: tim
+        - name: tim
           age: 18
+

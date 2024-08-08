@@ -11,9 +11,10 @@ struct OrzServer {
         
         // Create your Vapor application.
         let app = try await Vapor.Application.make()
-        
+                
         // Create a VaporTransport using your application.
-        let transport = VaporTransport(routesBuilder: app)
+        let requestInjectionMiddleware = OpenAPIRequestInjectionMiddleware()
+        let transport = VaporTransport(routesBuilder: app.grouped(requestInjectionMiddleware))
         
         // Create an instance of your handler type that conforms the generated protocol
         // defininig your service API.
@@ -25,6 +26,7 @@ struct OrzServer {
         
         // Add Sqlite Memory Database for Demo Server
         app.databases.use(.sqlite(.memory), as: .sqlite)
+        app.migrations.add(User())
         try await app.autoMigrate()
         
         // Add Vapor middleware to serve the contents of the Public/ directory.

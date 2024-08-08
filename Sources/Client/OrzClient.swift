@@ -9,7 +9,7 @@ struct OrzClient {
 
         let client = Client(serverURL: try Servers.server1(), transport: URLSessionTransport())
         
-        let response = try await client.getUser(.init(path: .init(userID: "1")))
+        let response = try await client.getAllUser(.init())
         
         switch response {
         case .ok(let okResponse):
@@ -17,8 +17,6 @@ struct OrzClient {
             case .json(let user):
                 print(user)
             }
-        case .notFound(let resp):
-            print("User Not Found")
         case .undocumented(statusCode: let statusCode, _):
             print("🥺 undocumented response: \(statusCode)")
         }
