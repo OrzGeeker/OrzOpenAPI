@@ -10,8 +10,8 @@ servers:
 paths:
   /user:
     post:
+      description: Create User
       operationId: createUser
-      description: 创建一个用户
       requestBody:
         content:
           application/json:
@@ -19,15 +19,15 @@ paths:
               $ref: '#/components/schemas/User'
       responses:
         200:
-          description: 创建成功
+          description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
   /user/{userID}:
     get:
+      description: Get User
       operationId: getUser
-      description: 获取单个用户信息
       parameters:
         - name: userID
           in: path
@@ -36,16 +36,16 @@ paths:
             type: string
       responses:
         200:
-          description: 请求成功
+          description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
         404:
-          description: 用户不存在
+          description: User Not Found
     put:
+      description: Update User
       operationId: updateUser
-      description: 更新单个用户信息
       parameters:
         - name: userID
           in: path
@@ -59,16 +59,16 @@ paths:
               $ref: '#/components/schemas/User'
       responses:
         200:
-          description: 更新成功
+          description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
         404:
-          description: 用户不存在
+          description: User Not Found
     delete:
+      description: Delete User
       operationId: deleteUser
-      description: 删除单个用户信息
       parameters:
         - name: userID
           in: path
@@ -77,13 +77,13 @@ paths:
             type: string
       responses:
         200:
-          description: 删除成功
+          description: Success
         404:
-          description: 用户不存在
+          description: User Not Exist
   /users:
     get:
+      description: Get All User With Filter
       operationId: getAllUser
-      description: 获取满足条件的全部用户
       parameters:
         - name: search
           in: query
@@ -91,7 +91,7 @@ paths:
             type: string
       responses:
         200:
-          description: 成功
+          description: Success
           content:
             application/json:
               schema:
@@ -110,6 +110,6 @@ components:
         age:
           type: integer
       examples:
-        - id: 1
+        - id: "1"
           name: tim
-          age: 18 
+          age: 18
