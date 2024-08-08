@@ -42,7 +42,7 @@ struct OrzServer {
         
         // Call the generated function on your implementation to add its request
         // handlers to the app.
-        try handler.registerHandlers(on: transport, serverURL: Servers.server3())
+        try handler.registerHandlers(on: transport, serverURL: Servers.server2())
         
         // Add Sqlite Memory Database for Demo Server
         app.databases.use(.sqlite(.memory), as: .sqlite)
@@ -52,7 +52,7 @@ struct OrzServer {
         app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
         
         // Redirect /openapi to openapi.html, which serves the rendered documentation.
-        app.get("openapi") { $0.redirect(to: "/openapi.html", redirectType: .permanent) }
+        app.get("openapi") { $0.redirect(to: "/openapi.html") }
         
         // Start the app as you would normally.
         try await app.execute()
