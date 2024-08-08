@@ -1,46 +1,115 @@
 openapi: '3.1.0'
 info:
-  title: GreetingService
-  version: 1.0.0
+  title: Simple RESTful API Demo
+  version: '0.0.1'
 servers:
-  - url: https://example.com/api
-    description: Example service deployment.
   - url: http://127.0.0.1:8080/api
-    description: Local Host Develop.
+    description: local host api development
+  - url: https://demo.api.com/api
+    description: online api service host
 paths:
-  /greet:
-    get:
-      operationId: getGreeting
-      parameters:
-        - name: name
-          required: false
-          in: query
-          description: The name used in the returned greeting.
-          schema:
-            type: string
+  /user:
+    post:
+      operationId: createUser
+      description: 创建一个用户
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
       responses:
-        '200':
-          description: A success response with a greeting.
+        200:
+          description: 创建成功
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Greeting'
-  /emoji:
+                $ref: '#/components/schemas/User'
+  /user/{userID}:
     get:
-      operationId: getEmoji
+      operationId: getUser
+      description: 获取单个用户信息
+      parameters:
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
-          description: A success response with an emoji.
+        200:
+          description: 请求成功
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/User'
+        404:
+          description: 用户不存在
+    put:
+      operationId: updateUser
+      description: 更新单个用户信息
+      parameters:
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: 用户不存在
+    delete:
+      operationId: deleteUser
+      description: 删除单个用户信息
+      parameters:
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 删除成功
+        404:
+          description: 用户不存在
+  /users:
+    get:
+      operationId: getAllUser
+      description: 获取满足条件的全部用户
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
 components:
   schemas:
-    Greeting:
+    User:
       type: object
       properties:
-        message:
+        id:
           type: string
-      required:
-        - message
+        name:
+          type: string
+        age:
+          type: integer
+      examples:
+        - id: 1
+          name: tim
+          age: 18 

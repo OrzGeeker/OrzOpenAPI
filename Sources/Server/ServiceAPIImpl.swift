@@ -12,20 +12,25 @@ import OpenAPI
 
 // Define a type that conforms to the generated protocol.
 struct GreetingServiceAPIImpl: APIProtocol {
-    func getGreeting(
-        _ input: Operations.getGreeting.Input
-    ) async throws -> Operations.getGreeting.Output {
-        let name = input.query.name ?? "Stranger"
-        let greeting = Components.Schemas.Greeting(message: "Hello, \(name)!")
-        return .ok(.init(body: .json(greeting)))
+
+    func createUser(_ input: Operations.createUser.Input) async throws -> Operations.createUser.Output {
+        return .ok(.init(body: .json(.init(id: "1", name: "Joker", age: 33))))
     }
     
-    
-    func getEmoji(
-        _ input: Operations.getEmoji.Input
-    ) async throws -> Operations.getEmoji.Output {
-        let emojis = "👋👍👏🙏🤙🤘"
-        let emoji = String(emojis.randomElement()!)
-        return .ok(.init(body: .plainText(.init(emoji))))
+    func getUser(_ input: Operations.getUser.Input) async throws -> Operations.getUser.Output {
+        return .ok(.init(body: .json(.init(id: "1", name: "Joker", age: 33))))
     }
+    
+    func updateUser(_ input: Operations.updateUser.Input) async throws -> Operations.updateUser.Output {
+        return .ok(.init(body: .json(.init(id: "1", name: "Joker", age: 33))))
+    }
+    
+    func deleteUser(_ input: Operations.deleteUser.Input) async throws -> Operations.deleteUser.Output {
+        return .ok(.init())
+    }
+    
+    func getAllUser(_ input: Operations.getAllUser.Input) async throws -> Operations.getAllUser.Output {
+        return .ok(.init(body: .json([.init(id: "1", name: "joker", age: 33)])))
+    }
+    
 }

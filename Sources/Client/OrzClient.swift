@@ -7,16 +7,18 @@ struct OrzClient {
 
     static func main() async throws {
 
-        let client = Client(serverURL: try Servers.server2(), transport: URLSessionTransport())
+        let client = Client(serverURL: try Servers.server1(), transport: URLSessionTransport())
         
-        let response = try await client.getGreeting(query: .init(name: "CLI"))
+        let response = try await client.getUser(.init(path: .init(userID: "1")))
         
         switch response {
         case .ok(let okResponse):
             switch okResponse.body {
-            case .json(let greeting):
-                print(greeting.message)
+            case .json(let user):
+                print(user)
             }
+        case .notFound(let resp):
+            print("User Not Found")
         case .undocumented(statusCode: let statusCode, _):
             print("🥺 undocumented response: \(statusCode)")
         }
