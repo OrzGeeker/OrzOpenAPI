@@ -20,10 +20,10 @@ let package = Package(
         .library(name: "OrzOpenAPI", targets: ["OpenAPI"]),
     ],
     dependencies: [
+        // For OpenAPI Generator
         .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-openapi-runtime", from: "1.0.0"),
         // For Server
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.102.1"),
         .package(url: "https://github.com/swift-server/swift-openapi-vapor.git", from: "1.0.1"),
         // For Server Database
         .package(url: "https://github.com/vapor/fluent.git", from: "4.11.0"),
@@ -35,9 +35,13 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .executableTarget(name: "Client", dependencies: ["OpenAPI"]),
+        .executableTarget(name: "Client", dependencies: [
+            "OpenAPI",
+            .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession"),
+        ]),
         .executableTarget(name: "Server", dependencies: [
             "OpenAPI",
+            .product(name: "OpenAPIVapor", package: "swift-openapi-vapor"),
             .product(name: "Fluent", package: "fluent"),
             .product(name: "FluentSQLiteDriver", package: "fluent-sqlite-driver"),
             .product(name: "Dependencies", package: "swift-dependencies"),
@@ -46,11 +50,6 @@ let package = Package(
             name: "OpenAPI",
             dependencies: [
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
-                // For Server
-                .product(name: "OpenAPIVapor", package: "swift-openapi-vapor"),
-                .product(name: "Vapor", package: "vapor"),
-                // For Client
-                .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession"),
             ],
             plugins: [
                 .plugin(name: "OpenAPIGenerator", package: "swift-openapi-generator"),
