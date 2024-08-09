@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ServiceImpl.swift
 //  OrzOpenAPI
 //
 //  Created by wangzhizhou on 2024/8/8.
@@ -13,7 +13,7 @@ import Dependencies
 import Fluent
 
 // Define a type that conforms to the generated protocol.
-struct GreetingServiceAPIImpl: APIProtocol {
+struct ServiceImpl: APIProtocol {
     
     @Dependency(\.request) var request
     

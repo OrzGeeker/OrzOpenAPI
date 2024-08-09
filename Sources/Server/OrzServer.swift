@@ -18,7 +18,7 @@ struct OrzServer {
         
         // Create an instance of your handler type that conforms the generated protocol
         // defininig your service API.
-        let handler = GreetingServiceAPIImpl()
+        let handler = ServiceImpl()
         
         // Call the generated function on your implementation to add its request
         // handlers to the app.
