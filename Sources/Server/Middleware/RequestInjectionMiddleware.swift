@@ -1,5 +1,5 @@
 //
-//  OpenAPIRequestInjectionMiddleware.swift
+//  RequestInjectionMiddleware.swift
 //  OrzOpenAPI
 //
 //  Created by wangzhizhou on 2024/8/8.
@@ -8,7 +8,7 @@
 import Vapor
 import Dependencies
 
-struct OpenAPIRequestInjectionMiddleware: AsyncMiddleware {
+struct RequestInjectionMiddleware: AsyncMiddleware {
     func respond(
         to request: Request,
         chainingTo responder: AsyncResponder

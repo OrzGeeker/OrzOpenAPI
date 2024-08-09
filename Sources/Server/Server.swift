@@ -6,17 +6,17 @@ import Fluent
 import FluentSQLiteDriver
 
 @main
-struct OrzServer {
+struct Server {
     static func main() async throws {
         
         // Create your Vapor application.
         let app = try await Vapor.Application.make()
                 
         // Create a VaporTransport using your application.
-        let requestInjectionMiddleware = OpenAPIRequestInjectionMiddleware()
+        let requestInjectionMiddleware = RequestInjectionMiddleware()
         let transport = VaporTransport(routesBuilder: app.grouped(requestInjectionMiddleware))
         
-        // Create an instance of your handler type that conforms the generated protocol
+        // Create an instance of your handler type that conforms the generated protocolhttp://127.0.0.1:8080/
         // defininig your service API.
         let handler = ServiceImpl()
         
