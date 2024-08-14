@@ -3,10 +3,10 @@ info:
   title: Simple RESTful API Demo
   version: '0.0.1'
 servers:
+  - url: https://jokerhub.cn:8080/api
+    description: online api service host
   - url: http://127.0.0.1:8080/api
     description: local host api development
-  - url: https://demo.api.com/api
-    description: online api service host
 paths:
   /user:
     post:
