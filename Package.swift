@@ -50,6 +50,10 @@ let package = Package(
             dependencies: [
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
             ],
+            resources: [
+                .copy("openapi.yml"),
+                .copy("openapi-generator-config.yaml")
+            ],
             plugins: [
                 .plugin(name: "OpenAPIGenerator", package: "swift-openapi-generator"),
             ]
