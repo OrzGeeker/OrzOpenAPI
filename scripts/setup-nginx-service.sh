@@ -17,5 +17,7 @@ if [ $? -eq 0 ]; then
 fi
 
  
+# if you want to setup https, your can use the certbot: https://certbot.eff.org/
+# on ubuntu, you can reference this article: https://certbot.eff.org/instructions?ws=nginx&os=pip
 
 
