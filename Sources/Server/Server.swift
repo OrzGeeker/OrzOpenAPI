@@ -34,7 +34,7 @@ struct Server {
         
         // Redirect /openapi to openapi.html, which serves the rendered documentation.
         app.get("openapi") { $0.redirect(to: "/openapi.html") }
-        app.get { $0.redirect(to: "/resume.html") }
+        app.get { $0.redirect(to: "/resume/index.html") }
         
         // Start the app as you would normally.
         try await app.execute()
