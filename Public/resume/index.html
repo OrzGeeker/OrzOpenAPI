@@ -1,13 +1,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <title>个人简历</title>
+            <title>个人简历</title>
     </head>
     <body>
         <div id='viewer'></div>
         <script src='/pdf/lib/webviewer.min.js'></script>
         <script>
+            // pdfjs.express: https://pdfjs.express/profile
             // Documentation: https://pdfjs.express/documentation
             WebViewer({
                 path: '/pdf/lib',
@@ -33,7 +33,35 @@
                 
                 // Page Size
                 const viewer = document.getElementById('viewer');
-                viewer.setAttribute('style', 'height: 100vh; width: 100vw');
+                viewer.setAttribute('style', 'height: 100%; width: 100%; margin: 0px;');
+                
+                // Download Button
+                instance.UI.disableElements(['downloadButton'])
+                instance.UI.setHeaderItems((header) => {
+                    header.getHeader('default').push({
+                        img: "icon-header-download",
+                        index: -1,
+                        type: "actionButton",
+                        element: 'downloadButton',
+                        onClick: () => {
+                            instance.UI.downloadPdf()
+                        }
+                    });
+                });
+                
+                // Full Screen Button
+                instance.UI.disableElements(['fullscreenButton'])
+                instance.UI.setHeaderItems((header) => {
+                    header.getHeader('default').push({
+                        img: "icon-header-full-screen",
+                        index: -1,
+                        type: "actionButton",
+                        element: 'fullScreenButton',
+                        onClick: () => {
+                            instance.UI.toggleFullScreen()
+                        }
+                    });
+                });
             });
         </script>
     </body>
