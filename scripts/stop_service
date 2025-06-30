@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# -*- coding: utf -*-
+
+screen -S openapi -X quit
